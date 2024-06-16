@@ -18,3 +18,11 @@ mini reimplementation of skypilot, so that you can run a standard and unmodified
   ```
 
   See the [examples](examples) directory for how this works. A100 server not included.
+
+
+## Installation
+
+  ```bash
+    gem build skyeel.gemspec
+    gem install skyeel-*
+  ```

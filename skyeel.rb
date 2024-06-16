@@ -1,3 +1,5 @@
+#!/bin/ruby
+
 require 'pathname'
 require 'net/ssh'
 require 'yaml'

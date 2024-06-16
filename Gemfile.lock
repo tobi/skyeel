@@ -1,3 +1,10 @@
+PATH
+  remote: .
+  specs:
+    skyeel (0.1.0)
+      ed25519
+      net-ssh
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -9,8 +16,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  ed25519
-  net-ssh
+  skyeel!
 
 BUNDLED WITH
    2.5.11
