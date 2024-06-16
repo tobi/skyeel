@@ -144,7 +144,7 @@ def main
       "#{k}=#{v}"
     end.join("\n")
 
-    session.check_docker_installed(ssh)
+    session.check_docker_installed()
     session.write_file("~/skyeel/run/.env", env_file.to_s)
     session.write_file("~/skyeel/run/tasks.setup.sh", setup_script)
     session.write_file("~/skyeel/run/tasks.run.sh", run_script)

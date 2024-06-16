@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    skyeel (0.1.0)
+    skyeel (0.3.0)
       ed25519
       net-ssh
 
