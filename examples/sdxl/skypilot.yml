@@ -1,0 +1,46 @@
+name: sdxl-finetune
+
+workdir: .
+
+envs:
+  HF_HUB_ENABLE_HF_TRANSFER: "1"
+  HF_TOKEN: #inherit
+  WANDB_API_KEY: #inherit
+  MODEL_NAME: "stabilityai/stable-diffusion-xl-base-1.0"
+  VAE_PATH: "madebyollin/sdxl-vae-fp16-fix"
+  INSTANCE_DIR: "./images"
+  OUTPUT_DIR: "./output"
+  NAME: "sdxl"
+  PYTHON: "3.11"
+
+setup: |
+  #!/bin/bash
+
+  curl -O https://raw.githubusercontent.com/huggingface/diffusers/main/examples/dreambooth/train_dreambooth_lora_sdxl.py
+
+  uv pip install -r requirements.in
+
+  accelerate config default
+  wandb init --project=$PROJECT_NAME
+
+run: |
+  #!/bin/bash
+
+  accelerate launch train_dreambooth_lora_sdxl.py \
+    --pretrained_model_name_or_path=$MODEL_NAME  \
+    --instance_data_dir=$INSTANCE_DIR \
+    --pretrained_vae_model_name_or_path=$VAE_PATH \
+    --output_dir=$OUTPUT_DIR \
+    --mixed_precision="fp16" \
+    --instance_prompt="a photo of sks rufus" \
+    --resolution=1024 \
+    --train_batch_size=1 \
+    --gradient_accumulation_steps=4 \
+    --learning_rate=1e-4 \
+    --report_to="wandb" \
+    --lr_scheduler="constant" \
+    --lr_warmup_steps=0 \
+    --max_train_steps=500 \
+    --validation_prompt="A photo of sks rufus in a bucket" \
+    --validation_epochs=100 \
+    --seed="0"

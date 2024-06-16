@@ -1,0 +1,14 @@
+diffusers  @ git+https://github.com/huggingface/diffusers
+torch
+datasets
+sentencepiece
+bitsandbytes
+accelerate
+torchvision
+transformers
+ftfy
+tensorboard
+Jinja2
+peft
+wandb
+numpy<1.24
