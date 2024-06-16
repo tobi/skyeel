@@ -58,9 +58,12 @@ RUNTIME_FILE = <<~RUNTIME_FILE
   IMAGE_ID=$(docker commit $CONTAINER_ID $RUN_NAME)
   docker rm $CONTAINER_ID
 
-  docker cp $CONTAINER_ID:/app/output $SKYEEL_DIR/workdir/output
+  mkdir -p $SKYEEL_DIR/workdir/output/$RUN_NAME
+  docker cp $CONTAINER_ID:/app/output $SKYEEL_DIR/workdir/output/$RUN_NAME
 
-  echo "Finsihed run $RUN_NAME, copy files out of container with:"
+  echo "Finsihed run $RUN_NAME, "
+  echo "  copied /app/output to $SKYEEL_DIR/workdir/output/$RUN_NAME"
+  echo "  copy additional files from the container via:"
   echo "  docker cp $RUN_NAME:/app/output ~/Downloads/output"
 
   RUNTIME_FILE
@@ -155,8 +158,6 @@ def main
     system("cd #{skydir} && rsync -art --progress #{skydir}/ #{server}:skyeel/run/workdir/")
 
     session.run("cd ~/skyeel/run/workdir && bash ../runner.sh")
-
-    session.run("rm -rf ~/skyeel/run")
   end
 end
 
