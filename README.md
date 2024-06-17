@@ -23,6 +23,8 @@ mini reimplementation of skypilot, so that you can run a standard and unmodified
 ## Installation
 
   ```bash
+    rake install
+    or
     gem build skyeel.gemspec
     gem install skyeel-*
   ```

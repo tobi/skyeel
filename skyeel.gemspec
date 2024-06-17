@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = "skyeel"
-  s.version     = "0.3.0"
+  s.version     = "0.4.0"
   s.summary     = "Cosplay being skypilot, except shitty"
   s.authors     = ["Tobi Lutke"]
   s.email       = "tobi@lutke.com"
